@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Онлайн музей школы №30</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="icon.png" alt="Иконка" class="header-icon">
+      <h1>Онлайн музей школы №30</h1>
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Поиск...">
+        <select id="sort">
+          <option value="date-desc">По дате (убывание)</option>
+          <option value="date-asc">По дате (возрастание)</option>
+        </select>
+      </div>
+      <button class="admin-btn" onclick="window.location.href='admin.html'">Вход для админа</button>
+    </div>
+  </header>
+
+  <div class="gallery" id="gallery"></div>
+
+  <div class="modal" id="modal">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <img id="modal-img" alt="Полное фото">
+    <p id="modal-desc"></p>
+    <p id="modal-date"></p>
+  </div>
+
+  <script>
+    fetch('/photos')
+      .then(res => res.json())
+      .then(photos => displayPhotos(photos));
+
+    function displayPhotos(photos) {
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+      photos.forEach(photo => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.innerHTML = `<img src="images/${photo.filename}" alt="${photo.description}" onclick="openModal('${photo.filename}', '${photo.description}', '${photo.date}')">`;
+        gallery.appendChild(div);
+      });
+    }
+
+    function openModal(filename, desc, date) {
+      const modal = document.getElementById('modal');
+      document.getElementById('modal-img').src = `images/${filename}`;
+      document.getElementById('modal-desc').textContent = desc;
+      document.getElementById('modal-date').textContent = `Дата: ${date}`;
+      modal.style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    document.getElementById('sort').addEventListener('change', (e) => {
+      fetch('/photos')
+        .then(res => res.json())
+        .then(photos => {
+          if (e.target.value === 'date-asc') {
+            photos.sort((a, b) => new Date(a.date) - new Date(b.date));
+          } else {
+            photos.sort((a, b) => new Date(b.date) - new Date(a.date));
+          }
+          displayPhotos(photos);
+        });
+    });
+
+    document.getElementById('search').addEventListener('input', (e) => {
+      fetch('/photos')
+        .then(res => res.json())
+        .then(photos => {
+          const filtered = photos.filter(p => p.description.toLowerCase().includes(e.target.value.toLowerCase()));
+          displayPhotos(filtered);
+        });
+    });
+  </script>
+</body>
+</html>

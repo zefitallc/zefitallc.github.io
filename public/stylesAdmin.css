@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{font-family: poppins, sans-serif;}
+
+/* Галерея */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .gallery-item img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Модальное окно */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    padding-top: 3rem;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .modal img {
+    max-width: 90%;
+    height: auto;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .modal p {
+    margin: 0.5rem 0;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #fff;
+  }
+
+/* Стили для контейнера последних 5 фото */
+.last-photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Стили для каждого элемента в последних 5 фото */
+  .lastFivePhotoAdmin {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  /* Стили для изображения */
+  .lastFivePhotoAdmin img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Эффект при наведении */
+  .lastFivePhotoAdmin:hover img {
+    transform: scale(1.05);
+  }
+  
+  /* Стили для кнопки удаления */
+  .gallery-item  button{
+    position: absolute;
+    bottom: 90px;
+    left: 9%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 0, 0, 0.459);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer; 
+    transition: opacity 0.3s ease;
+
+  }
+  .lastFivePhotoAdmin button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Показ кнопки при наведении */
+  .lastFivePhotoAdmin:hover button {
+    opacity: 1;
+  }
+
+
+
+  .admin-login {
+  padding: 10px;
+  padding-top:50px; ;
+  padding-bottom: 50px;
+  background: rgba(78, 186, 161, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); 
+  flex: auto;
+  display: flex;
+  justify-content: center;
+  max-width: 400px;
+  width: 90%;
+  }
+
+  .input-line{
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgb(255, 255, 255, .2);
+    border-radius: 40px;
+    padding: 10px;
+    position: relative;
+    color: #fff;
+  }
+  
+  .input-line input::placeholder {
+    color: #fff;
+  }
+.input-line i{
+  position: absolute;
+  color: #fff;
+}
+
+.btn-login{
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0, 0, 10px, rgb(0, 0, 0, .3);
+  margin-left: 10px;
+}
+.btn-login:hover{
+  background:rgba(78, 186, 161, 0.4) ;
+  color: #fff;
+}
+
+  .admin-panel{
+  display: flex;
+  padding: 20px;
+  margin: 10px;
+  margin-top: 0px;
+
+  background: rgba(78, 186, 161, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  }
+
+  .admin-panel button,
+  .admin-panel button.btn-submit{
+    padding: 0.5rem 1rem;
+    background: rgba(78, 186, 161, 0.4);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-panel button:hover,
+  .admin-panel button.btn-submit:hover{
+    background: rgba(152, 230, 211, 0.4);
+    color: rgb(14, 49, 41);
+  }
+
+  .btn-text{
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgb(255, 255, 255, .2);
+    border-radius: 40px;
+    position: relative;
+    color: #fff;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background: rgba(78, 186, 161, 0.664);
+  }
+
+  .btn-file{
+    max-width: 300px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgb(255, 255, 255, .2);
+    border-radius: 40px;
+    position: relative;
+    color: #fff;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background: rgba(78, 186, 161, 0.664);
+  }
+
+  .input.btn-date {
+    opacity: 1;
+    background-color:rgba(106, 185, 167, 0.4)
+  }
+
+  
+  .body{
+    
+    background-image: url('test.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 10%
+  
+  }
+  
+/* Адаптивность */
+@media (max-width: 768px) {
+  .body{
+    padding: 200px;
+    padding-top: 70%;
+  }
+  .gallery{
+    max-width: 500px;
+  }
+  .btn-text{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
